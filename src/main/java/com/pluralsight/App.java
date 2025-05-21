@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] args) {
+
+        // Data at rest
         ArrayList<Character> characters = new ArrayList<Character>();
         characters.add(new Character("Luke Skywalker", 172, 77, "blue", "male"));
         characters.add(new Character("Darth Vader", 202, 136, "yellow", "male"));
@@ -13,9 +15,15 @@ public class App {
 
         // 1. Print names in all uppercase
         System.out.println("=== Names in UPPERCASE ===");
-        for (Character c : characters) {
-            System.out.println(c.getName().toUpperCase());
-        }
+//        for (Character c : characters) {
+//            System.out.println(c.getName().toUpperCase());
+//        }
+
+        characters.stream()
+                .map(character -> character.getName().toUpperCase())
+                .forEach(name -> System.out.println(name));
+
+        System.exit(0);
 
         // 2. Filter characters with mass > 80
         System.out.println("\n=== Characters with Mass > 80 ===");
@@ -26,13 +34,20 @@ public class App {
                 System.out.println(c.getName() + " (" + c.getMass() + ")");
             }
         }
+        // Print the new list with loop
+        for (Character c : filtered) {
+            System.out.println(c.getName() + " (" + c.getMass() + ") ");
+        }
 
         // 3. Create a list of just names
         System.out.println("\n=== Character Names ===");
+        // Creating new list to hold names of characters
         ArrayList<String> names = new ArrayList<String>();
+        // Loop over characters and get the names and add to list of names
         for (Character c : characters) {
             names.add(c.getName());
         }
+        // Print out the name in names list by looping over names list
         for (String name : names) {
             System.out.println(name);
         }
